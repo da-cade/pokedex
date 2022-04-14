@@ -1,8 +1,13 @@
-import { pokeApi } from "./AxiosService";
+import { ProxyState } from "../AppState.js";
+import { Pokemon } from "../Models/Pokemon.js";
+import { pokeApi } from "./AxiosService.js";
 
-class PokiService {
+
+class WildPokeService {
   async getAllPokemon(){
     const res = await pokeApi.get('pokemon')
-    console.log("res data", res)
+    ProxyState.pokemon = res.data.results
   }
 }
+
+export const wildPokeService = new WildPokeService();
